@@ -1,7 +1,26 @@
 import discord
 import os
+import requests
+import json
+import random
 from keep_alive import keep_alive
+
 client = discord.Client()
+
+sad_words = ["sad", "depressed", "unhappy", "sed", "angry", "depressing", "miserable", "fucked up",]
+
+starter_encouragements = [
+"cheer up!",
+"hang in there",
+"you are a great person!",
+"don't forget you are a sigma male!"
+]
+
+def get_quote():
+  response = requests.get("https://zenquotes.io/api/random")
+  json_data = json.loads(response.text)
+  quote = json_data[0]['q'] + " -" + json_data[0]['a']
+  return(quote)
 
 @client.event
 async def on_ready():
@@ -11,6 +30,8 @@ async def on_ready():
 async def on_message(message):
   if message.author == client.user:
     return
+  
+  msg = message.content
 
   if message.content.startswith('hello'):
     await message.channel.send('hello!')
@@ -27,7 +48,13 @@ async def on_message(message):
   elif  message.content.startswith('commands'):
     await message.channel.send("some simple commands for the  <@922523913446096999> \n $syllabus :- for the syllabus \n $examdate :- exam date")
   elif   message.content.startswith('$developer'):
-    await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n Youtube channel:- https://www.youtube.com/channel/UC5Bf0ZVk7qi_CS1b15va6qw \n instagram profile:- https://www.instagram.com/gunshot.ig/ \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'") 
+    await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n Youtube channel:- https://www.youtube.com/channel/UC5Bf0ZVk7qi_CS1b15va6qw \n instagram profile:- https://www.instagram.com/gunshot.ig/ \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'")
+  if message.content.startswith('$inspire'):
+    quote = get_quote()
+    await message.channel.send(quote)   
+  if any(word in msg for word in sad_words):
+    await message.channel.send(random.choice(starter_encouragements))
+
 my_secret = os.environ['TOKEN']
 keep_alive()
 client.run(my_secret)
