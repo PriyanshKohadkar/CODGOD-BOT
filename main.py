@@ -50,31 +50,31 @@ async def on_message(message):
   
   msg = message.content
 
-  if message.content.startswith('hello'):
+  if message.content.lower().startswith('hello'):
     await message.channel.send('hello!')
 
-  elif message.content.startswith('hi'):
+  elif message.content.lower().startswith('hi'):
     await message.channel.send('whatsup!') 
 
-  if message.content.startswith('$syllabus sst'):
+  if message.content.lower().startswith('$syllabus sst'):
     await message.channel.send("GEOGRAPHY:- \n 1. Resources:Utilisation and Development \n 2.Natural resources:Land,Soil,Water \n 3.Natural resorces:Vegetation and Wildlife \n 4.Agriculture \n 5. Human Resources \n HISTORY:- \n 1.Modern Period \n 2.Establishment of Company Rule in India \n 3.Colonialism:Rural and Tribal socities \n 4. The First war of Independence -1857 \n 5.The nationalist movement(1870 to 1947)\n 6.India marches ahead \n CIVICS:- \n 1.Our Constitution \n 2.Fundamental rights ,Fundamental Duties and Directive Principles of State Policy \n 3.The Union Government: The legislature \n 4.The Union Government: The Executive \n 5.The Union Government:The Judiciary")
 
-  if message.content.startswith('$syllabus science'):
+  if message.content.lower().startswith('$syllabus science'):
     await message.channel.send("syllabus has'nt been  uploaded yet")
 
-  if message.content.startswith('$syllabus'):
+  if message.content.lower().startswith('$syllabus'):
     await message.channel.send("to get syllabus of any subject type '$syllabus <subject name>'")
 
-  if  message.content.startswith('$examdate'):
+  if  message.content.lower().startswith('$examdate'):
     await message.channel.send('the upcoming exam is going to be a preparetory! \n exam date: 17th january 2022! \n exam mode:- online(may change later depending upon current situation)')
 
-  if  message.content.startswith('commands'):
+  if  message.content.lower().startswith('commands'):
     await message.channel.send("some simple commands for the  <@922523913446096999> \n $developer :- for developer information \n $responding true(for responding on) and $responding false(for responding off) \n $syllabus :- for the syllabus \n $examdate :- exam date \n $inspire :- for getting inspiration Quotes! \n $listencourage :- for getting current encouragement list \n $newencourage :- to add a newencouragement(ex. you are best! don't be sad) \n $delencourage :- for deleting encouragement messages (note:- the list start with 0, not with 1 index)")
 
-  if   message.content.startswith('$developer'):
+  if   message.content.lower().startswith('$developer'):
     await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n Youtube channel:- https://www.youtube.com/channel/UC5Bf0ZVk7qi_CS1b15va6qw \n instagram profile:- https://www.instagram.com/gunshot.ig/ \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'")
 
-  if message.content.startswith('$inspire'):
+  if message.content.lower().startswith('$inspire'):
     quote = get_quote()
     await message.channel.send(quote)
 
@@ -83,15 +83,15 @@ async def on_message(message):
     if "encouragements" in db.keys():
       options = db["encouragements"]
       
-    if any(word in msg for word in sad_words):
+    if any(word in msg.lower() for word in sad_words):
       await message.channel.send(random.choice(options))
 
-  if msg.startswith("$newencourage"):
+  if msg.lower().startswith("$newencourage"):
     encouraging_message = msg.split("$newencourage ",1)[1]
     update_encouragements(encouraging_message)
     await message.channel.send("new encouraging message added!")
 
-  if msg.startswith("$delencourage"):
+  if msg.lower().startswith("$delencourage"):
     encouragements = []
     if "encouragements" in db.keys():
       index = int(msg.split("$delencourage",1)[1])
@@ -99,13 +99,13 @@ async def on_message(message):
       encouragements = db["encouragements"]
       await message.channel.send(encouragements)
 
-  if msg.startswith("$listencourage"):
+  if msg.lower().startswith("$listencourage"):
     encouragements = []
     if "encouragements" in db.keys():
       encouragements = db["encouragements"]
       await message.channel.send(encouragements)
 
-  if msg.startswith("$responding"):
+  if msg.lower().startswith("$responding"):
     value = msg.split("$responding ",1)[1]
 
     if value.lower() == "true":
