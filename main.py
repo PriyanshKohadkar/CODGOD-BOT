@@ -27,7 +27,7 @@ async def on_message(message):
   elif  message.content.startswith('commands'):
     await message.channel.send("some simple commands for the  <@922523913446096999> \n $syllabus :- for the syllabus \n $examdate :- exam date")
   elif   message.content.startswith('$developer'):
-    await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'") 
+    await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n Youtube channel:- https://www.youtube.com/channel/UC5Bf0ZVk7qi_CS1b15va6qw \n instagram profile:- https://www.instagram.com/gunshot.ig/ \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'") 
 my_secret = os.environ['TOKEN']
 keep_alive()
 client.run(my_secret)
