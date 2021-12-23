@@ -41,7 +41,9 @@ def delete_encouragement(index):
   
 @client.event
 async def on_ready():
+  await client.change_presence(status=discord.Status.online, activity=discord.Game("$Ghelp"))
   print('we have logged in as {0.user}'.format(client))
+  
 
 @client.event
 async def on_message(message):
@@ -72,7 +74,10 @@ async def on_message(message):
   if  message.content.lower().startswith('commands'):
     await message.channel.send("some simple commands for the  <@922523913446096999> \n $developer :- for developer information \n $responding true(for responding on) and $responding false(for responding off) \n $syllabus :- for the syllabus \n $examdate :- exam date \n $inspire :- for getting inspiration Quotes! \n $listencourage :- for getting current encouragement list \n $newencourage :- to add a newencouragement(ex. you are best! don't be sad) \n $delencourage :- for deleting encouragement messages (note:- the list start with 0, not with 1 index)")
 
-  if   message.content.lower().startswith('$developer'):
+  if  message.content.lower().startswith('$ghelp'):
+    await message.channel.send("some simple commands for the  <@922523913446096999> \n $developer :- for developer information \n $responding true(for responding on) and $responding false(for responding off) \n $syllabus :- for the syllabus \n $examdate :- exam date \n $inspire :- for getting inspiration Quotes! \n $listencourage :- for getting current encouragement list \n $newencourage :- to add a newencouragement(ex. you are best! don't be sad) \n $delencourage :- for deleting encouragement messages (note:- the list start with 0, not with 1 index)")
+
+  if  message.content.lower().startswith('$developer'):
     await message.channel.send("This bot is developed and made by:- \n <@646008825224364042> \n github profile:- https://github.com/gunshotop \n replit.com:- https://replit.com/@Gunshotgaming \n Youtube channel:- https://www.youtube.com/channel/UC5Bf0ZVk7qi_CS1b15va6qw \n instagram profile:- https://www.instagram.com/gunshot.ig/ \n discord tag:- CODEGOD</>#5307 \n discord id:- '646008825224364042'")
 
   if message.content.lower().startswith('$inspire'):
