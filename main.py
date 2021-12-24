@@ -5,8 +5,16 @@ import json
 import random
 from replit import db
 from keep_alive import keep_alive
+from discord.ext import commands
+import music
 
-client = discord.Client()
+client = discord.Client(commands_prefix="$")
+cogs = [music]
+
+for i in range(len(cogs)):
+  cogs[i].setup(client)
+
+
 
 sad_words = ["sad", "depressed", "unhappy", "sed", "angry", "depressing", "miserable", "fucked up",]
 
