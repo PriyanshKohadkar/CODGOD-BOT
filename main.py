@@ -5,26 +5,25 @@ import json
 import random
 from replit import db
 from keep_alive import keep_alive
-from discord.ext import commands
-import music
-
-client = discord.Client(commands_prefix="$")
-cogs = [music]
-
-for i in range(len(cogs)):
-  cogs[i].setup(client)
-
-
-
+from class_bot import maths
+client = discord.Client()
+birthday_greets = ["hbd", "many many","happy birthday", "happy","cheers","returns"]
+solve = ""
+f_words_no = [ "fa", "fi", "fai","fla","fu","freak", "fell","func" "fuc", "fac", "facebook", "fs", "fd", "fg", "fh", "fj", "fl", "fm", "fn", "fb", "fv", "fc","fx", "fz", "fq", "ff", "fw", "fe", "fr", "ft", "fy", "fu", "fi", "fo", "fp", "fap","flap", "face", "fair","fuck","facts","fax","fk","fix", "fellow","fun", "function", "freaking", "wtf", "ofc", "of", "off", "if", "ig"]
+pay_respects = ["f", "respects"]
+birthday_greets_response = ["https://tenor.com/view/nico-yazawa-love-live-happy-birthday-gif-9241240", "https://tenor.com/view/happy-birthday-pokemon-dance-pikachu-gif-17058590", "https://tenor.com/view/naruto-shippuden-madara-uchiha-gif-5321987","https://tenor.com/view/fairy-tail-happy-birthday-twerk-virgo-booty-shake-gif-16086842", "https://tenor.com/view/naruto-naruto-chunin-exams-chunin-exams-dance-gif-13984229"]
+murukh = ["idiot", "baka", "bakka", "noob", "lmao noob", "murukh"]
+murukh_response = ["https://tenor.com/view/baka-anime-gif-12908346", "https://tenor.com/view/tobirama-baka-gif-18220803","https://tenor.com/view/sasuke-naruto-anime-mad-baka-gif-17737654"]
+friends_words = ["besto friendo", "best friend", "true friend", "truu friend","you are my friend", "my besto friendo", "my best friend", "i am your friend",]
 sad_words = ["sad", "depressed", "unhappy", "sed", "angry", "depressing", "miserable", "fucked up",]
-
 starter_encouragements = [
 "cheer up!",
 "hang in there",
 "you are a great person!",
 "don't forget you are a sigma male!"
 ]
-
+pydro_acc = "<@804358711136747551>"
+malhar_acc = "<@926561667289063424>"
 if "responding" not in db.keys():
   db["responding"] = True
 
@@ -57,17 +56,17 @@ async def on_ready():
 async def on_message(message):
   if message.author == client.user:
     return
-  
-  if message.mention_everyone:
+  '''if message.mention_everyone:
     return
   else:
     if client.user.mentioned_in(message):
-      await message.channel.send('I am here to help you!')  
+      await message.channel.send('I am here to help you!')'''  
   msg = message.content
 
   if message.content.lower().startswith('hello'):
     await message.channel.send('hello! I am here to help you!')
-
+  if message.content.lower().startswith('hindi'):
+    return
   if message.content.lower().startswith('hi'):
     await message.channel.send('whatsup!')
   if message.content.lower().startswith("umai"):
@@ -111,7 +110,65 @@ async def on_message(message):
   if message.content.lower().startswith('$inspire'):
     quote = get_quote()
     await message.channel.send(quote)
-
+  if message.content.lower().startswith("sq"):
+    try:
+      no1 = int(msg.split("sq", 1)[1])
+      noq  = maths(no1)
+      nos = noq.square()
+      await message.channel.send(f"{no1}={nos}")
+    except:
+      return
+  if message.content.lower().startswith("cu"):
+    try:
+      no2 = int(msg.split("cu", 1)[1])
+      noc  = maths(no2)
+      nou = noc.cube()
+      await message.channel.send(f"{no2}={nou}")
+    except:
+      return
+  if message.content.lower().startswith("exp"):
+    try:
+      eli = msg.split(",")
+      noe = int(eli[1])
+      nop = int(eli[2])
+      nox = maths(noe)
+      eans = nox.exponent(nop)
+      await message.channel.send(f"{noe}^{nop}={eans}")
+    except:
+      return        
+  if message.content.lower().startswith('simple spell'):
+    await message.channel.send('https://tenor.com/view/doctor-strange-marvel-simple-spell-unbreakable-gif-14530077')
+  if message.content.lower().startswith('ohh yeah'):
+    await message.channel.send('https://tenor.com/view/oh-yeah-gif-24167454')  
+  if any(word in msg.lower() for word in friends_words):
+    await message.channel.send('https://tenor.com/view/my-besto-friendo-jujutsu-kaisen-zorothex-gif-23553828')
+  if any(word in msg.lower() for word in murukh):
+      await message.channel.send(random.choice(murukh_response))  
+  if message.content.lower().startswith('yes!'):
+    await message.channel.send('https://tenor.com/view/jojo-anime-yes-yes-yes-yeah-its-a-yes-gif-17161748') 
+  if message.content.lower().startswith('arigato'):
+    await message.channel.send('https://c.tenor.com/5MAd4MUpoeEAAAAM/my-hero-academia-boku-no-hero-academia.gif')   
+  if message.content.lower().startswith('chala ja'):
+    await message.channel.send('https://tenor.com/view/chala-ja-chala-ja-b-sd-k-bsdk-chaleja-funnybawa-gif-18701954') 
+  if message.content.lower().startswith('entertain'):
+    await message.channel.send('https://tenor.com/view/eating-the-chip-chips-chip-eating-chip-man-eating-three-chips-gif-18885184')
+  if message.content.lower().startswith('handshake'):
+    await message.channel.send('https://tenor.com/view/madara-uchiha-hashirama-senju-hand-shake-gif-16768560')  
+  if message.content.lower().startswith('hmm'):
+    await message.channel.send("https://tenor.com/view/nani-intensifies-nani-intensifies-what-cosa-gif-13077558")
+  if message.content.lower().startswith('i am god'):
+    await message.channel.send("https://tenor.com/view/i-am-g-you-are-trash-i-am-superi-i-am-better-gif-24129609")  
+  if message.content.lower().startswith('die'):
+    await message.channel.send("https://tenor.com/view/naruto-from-behind-gif-13373335")
+  if message.content.lower().startswith('shinee'):
+    await message.channel.send("https://tenor.com/view/naruto-from-behind-gif-13373335") 
+  if message.content.lower().startswith('jod'):
+    await message.channel.send("https://tenor.com/view/tbone-jod-tbone-jod-raka-rakazone-gif-21986927")
+  if any(word in msg.lower() for word in f_words_no):
+    return
+  elif any(word in msg.lower() for word in pay_respects):
+    await message.channel.send ("https://tenor.com/view/pay-respects-press-f-call-of-duty-respect-press-x-gif-22309724")
+        
   if db["responding"]:
     options = starter_encouragements
     if "encouragements" in db.keys():
@@ -119,7 +176,8 @@ async def on_message(message):
       
     if any(word in msg.lower() for word in sad_words):
       await message.channel.send(random.choice(options))
-
+  if any(word in msg.lower() for word in birthday_greets):
+      await message.channel.send(random.choice(birthday_greets_response)) 
   if msg.lower().startswith("$newencourage"):
     encouraging_message = msg.split("$newencourage ",1)[1]
     update_encouragements(encouraging_message)

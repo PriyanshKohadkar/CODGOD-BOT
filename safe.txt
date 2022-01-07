@@ -1,0 +1,5 @@
+noe = int(msg.split("$maths exp", 1, 2)[1])
+    nop =  int(msg.split("$maths exp", 1, 2)[2])
+    noe = maths(noe)
+    noe = noe.exponent(nop)
+    await message.channel.send(noe)
